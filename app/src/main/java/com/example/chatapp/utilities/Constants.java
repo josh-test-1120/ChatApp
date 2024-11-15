@@ -6,7 +6,8 @@ package com.example.chatapp.utilities;
 public class Constants {
     // Hash keys for database contracts
     public static final String KEY_COLLECTION_USERS = "User";
-    public static final String KEY_NAME = "name";
+    public static final String KEY_FIRSTNAME = "first_name";
+    public static final String KEY_LASTNAME = "last_name";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_USERID = "userid";

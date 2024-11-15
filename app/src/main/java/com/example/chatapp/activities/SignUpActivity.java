@@ -103,7 +103,8 @@ public class SignUpActivity extends AppCompatActivity {
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         HashMap<String, String> user = new HashMap<>();
         // Create the user according to database contract hash
-        user.put(Constants.KEY_NAME,binding.inputName.getText().toString());
+        user.put(Constants.KEY_FIRSTNAME,binding.inputFirstName.getText().toString());
+        user.put(Constants.KEY_LASTNAME,binding.inputLastName.getText().toString());
         user.put(Constants.KEY_EMAIL,binding.inputEmail.getText().toString());
         user.put(Constants.KEY_PASSWORD,binding.inputPassword.getText().toString());
         user.put(Constants.KEY_IMAGE,encodedImage);
@@ -115,7 +116,8 @@ public class SignUpActivity extends AppCompatActivity {
                     loadingData(false);
                     // Save the user information to Preference Manager
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
-                    preferenceManager.putString(Constants.KEY_NAME,binding.inputName.getText().toString());
+                    preferenceManager.putString(Constants.KEY_FIRSTNAME,binding.inputFirstName.getText().toString());
+                    preferenceManager.putString(Constants.KEY_LASTNAME,binding.inputLastName.getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE,encodedImage);
                     // Change activity to MainActivity
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
@@ -185,6 +187,8 @@ public class SignUpActivity extends AppCompatActivity {
      */
     private Boolean signUpValidations() {
         // Get some of the variables from binding
+        String firstName = binding.inputFirstName.getText().toString();
+        String lastName = binding.inputLastName.getText().toString();
         String email = binding.inputEmail.getText().toString();
         String password = binding.inputPassword.getText().toString();
         String passwordConfirm = binding.inputConfirmPassword.getText().toString();
@@ -193,8 +197,8 @@ public class SignUpActivity extends AppCompatActivity {
             showToast("Please select an image for profile");
             return false;
         }
-        else if (binding.inputName.getText().toString().trim().isEmpty()) {
-            showToast("Please enter your name");
+        else if (firstName.trim().isEmpty() || lastName.trim().isEmpty()) {
+            showToast("Please enter your first and last name");
             return false;
         }
         else if (email.trim().isEmpty()) {
