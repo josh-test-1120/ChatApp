@@ -119,6 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
                     preferenceManager.putString(Constants.KEY_FIRSTNAME,binding.inputFirstName.getText().toString());
                     preferenceManager.putString(Constants.KEY_LASTNAME,binding.inputLastName.getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE,encodedImage);
+                    preferenceManager.putString(Constants.KEY_USERID, documentReference.getId());
                     // Change activity to MainActivity
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
