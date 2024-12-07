@@ -50,12 +50,14 @@ public class ChatActivity extends AppCompatActivity {
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         // Set the content View
         setContentView(binding.getRoot());
-        // Process methods to load chat view
+        // Process methods to load receiver details
         loadReceiverDetails();
+        // Set the listeners for events
         setListeners();
+        // Initialize the variables
         init();
+        // Listen for messages and add them to the view
         listenMessage();
-
     }
 
     /**
@@ -168,7 +170,9 @@ public class ChatActivity extends AppCompatActivity {
      * Loads the Receiver Details
      */
     private void loadReceiverDetails() {
+        // Get the user from the Intent and serialize it
         receiverUser = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
+        // Set the user name in the view
         binding.textName.setText(receiverUser.firstName + " " + receiverUser.lastName);
 
     }
